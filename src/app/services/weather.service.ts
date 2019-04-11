@@ -25,7 +25,7 @@ export class WeatherService {
   // }
 
   getIcon(id) {
-    return this.http.get('http://openweathermap.org/img/w/' + id + '.png');
+    return this.http.get('https://openweathermap.org/img/w/' + id + '.png');
   }
 
   getCurrentWeatherByLocation(lat: string, lon: string) {

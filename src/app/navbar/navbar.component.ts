@@ -40,13 +40,11 @@ export class NavbarComponent implements OnInit {
               this.placeholder = this.searchText;
             });
       });
+    } else {
+      this.weatherService.changeCity(this.cities[0]);
+      this.searchText = this.cities[0].name + ', ' + this.cities[0].country;
+      this.placeholder = this.searchText;
     }
-    // this.weatherService.getCities().subscribe((response: Config) => {
-    //   this.cities = response;
-    //   // this.weatherService.changeCity(this.cities[0]);
-    //   // this.searchText = this.cities[0].name + ', ' + this.cities[0].country;
-    //   // this.placeholder = this.searchText;
-    // });
 
     this.weatherService.getUnits().subscribe(response => {
       this.units = response;

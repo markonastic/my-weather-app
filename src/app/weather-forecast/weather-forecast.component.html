@@ -19,7 +19,7 @@
               <div class="hour-temp" *ngIf="day === forDay.dt_txt.substr(0, 10)">
                 <span class="hour">{{ forDay.dt_txt | date: 'HH' }}h </span>
                 <span class="temp">{{ forDay.main.temp | number: '1.0-0' }}{{ unit.unitSign }}</span>
-                <img src="http://openweathermap.org/img/w/{{forDay.weather[0].icon}}.png" alt="">
+                <img src="https://openweathermap.org/img/w/{{forDay.weather[0].icon}}.png" alt="">
               </div>
             </div>
          </div>

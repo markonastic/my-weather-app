@@ -12,7 +12,7 @@
       <div class="weather-today">
         <div class="temp">
           <div>
-            <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" alt="">
+            <img src="https://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" alt="">
           </div>
           <span *ngIf="show">{{ weather.main.temp | number: '1.0-0' }}{{ unit.unitSign }}</span>
         </div>
