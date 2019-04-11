@@ -9,8 +9,8 @@ import { Config } from 'protractor';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  cities;
-  units;
+  cities = null;
+  units = null;
   unitIndex = 0;
   searchText = '';
   placeholder = '';
@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   showArrow: boolean;
   unitShow = true;
   width: number;
-  location;
+  location = null;
   city = {name: '', id: 0, country: ''};
 
   constructor(private weatherService: WeatherService) {}
@@ -54,14 +54,14 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  unitChanged(i) {
+  unitChanged(i: number) {
     this.unitIndex = i;
     if (this.units) {
       this.weatherService.changeUnit(this.units[i]);
     }
   }
 
-  cityChanged(i) {
+  cityChanged(i: number) {
     if (this.searchCities) {
       this.weatherService.changeCity(this.searchCities[i]);
     }
@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
   search() {
     const this1 = this;
     this.searchCities = [];
-    this.cities.filter((city) => {
+    this.cities.filter((city: any) => {
       const i = city.name.toLowerCase().indexOf(this1.searchText.toLowerCase());
       if (
         i === 0 &&

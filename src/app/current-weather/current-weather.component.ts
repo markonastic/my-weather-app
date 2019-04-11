@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentWeatherComponent implements OnInit {
 
-  weather;
-  unit;
-  city;
+  weather = null;
+  unit = null;
+  city = null;
   show: boolean;
   date = new Date();
 

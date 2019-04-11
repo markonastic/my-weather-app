@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weather-forecast.component.scss']
 })
 export class WeatherForecastComponent implements OnInit {
-  forDays;
-  unit;
-  city;
+
+  forDays = null;
+  unit = null;
+  city = null;
   daysArray = [];
   location = {};
 
@@ -23,20 +24,14 @@ export class WeatherForecastComponent implements OnInit {
         if (this.city) {
           this.weatherService
             .getWeatherForecast(this.city.id, this.unit.unit)
-            .subscribe(response2 => {
-              this.forDays = response2;
-              for (let i = 0; i < this.forDays.list.length; i++) {
-                if (
-                  this.daysArray.indexOf(
-                    this.forDays.list[i].dt_txt.substr(0, 10)
-                  ) < 0
-                ) {
-                  this.daysArray.push(
-                    this.forDays.list[i].dt_txt.substr(0, 10)
-                  );
+              .subscribe(response2 => {
+                this.forDays = response2;
+                for (const listEl of this.forDays.list) {
+                  if (this.daysArray.indexOf(listEl.dt_txt.substr(0, 10)) < 0) {
+                    this.daysArray.push(listEl.dt_txt.substr(0, 10));
+                  }
                 }
-              }
-            });
+              });
         }
       });
     });
