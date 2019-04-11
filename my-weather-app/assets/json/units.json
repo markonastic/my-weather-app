@@ -1,0 +1,17 @@
+[
+  {
+    "unit": "metric",
+    "unitSign": "°C",
+    "wind": "m/s"
+  },
+  {
+    "unit": "imperial",
+    "unitSign": "°F",
+    "wind": "mph"
+  },
+  {
+    "unit": "",
+    "unitSign": "K",
+    "wind": "m/s"
+  }
+]
