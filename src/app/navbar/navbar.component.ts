@@ -1,6 +1,6 @@
 import { WeatherService } from '../services/weather.service';
 import { Component, OnInit } from '@angular/core';
-import citiesJson from '../../assets/json/citylist.json';
+import citiesJson from '../../assets/json/citylist.min.json';
 import { Config } from 'protractor';
 
 @Component({
