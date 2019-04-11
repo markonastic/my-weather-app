@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
   search() {
     const this1 = this;
     this.searchCities = [];
-    this.cities.filter(function(city) {
+    this.cities.filter((city) => {
       const i = city.name.toLowerCase().indexOf(this1.searchText.toLowerCase());
       if (
         i === 0 &&

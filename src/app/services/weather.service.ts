@@ -21,7 +21,7 @@ export class WeatherService {
   }
 
   getCities() {
-    return this.http.get('assets/json/citylist.json');
+    return this.http.get('assets/json/citylist.min.json');
   }
 
   getIcon(id) {
