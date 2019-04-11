@@ -1,0 +1,30 @@
+<div class="main-content">
+  <div class="container">
+    <div class="title">
+      <h1>Weather forecast</h1>
+    </div>
+    <div class="description" *ngIf="forDays">
+      <div class="name">
+        <strong>{{ forDays.city.name }}, {{ forDays.city.country }}</strong>
+      </div>
+      <div class="days">
+        <div class="day" *ngFor="let day of daysArray;let i=index">
+          <div class="day-caption">
+            <strong class="day-of-week" *ngIf="i===0">Today, </strong>
+            <strong class="day-of-week" *ngIf="i>0">{{ day | date: 'EEEE' }}, </strong>
+            <strong class="date">{{ day | date: 'MMMM d.' }}</strong>
+          </div>
+          <div class="temp-container">
+            <div *ngFor="let forDay of forDays.list">
+              <div class="hour-temp" *ngIf="day === forDay.dt_txt.substr(0, 10)">
+                <span class="hour">{{ forDay.dt_txt | date: 'HH' }}h </span>
+                <span class="temp">{{ forDay.main.temp | number: '1.0-0' }}{{ unit.unitSign }}</span>
+                <img src="http://openweathermap.org/img/w/{{forDay.weather[0].icon}}.png" alt="">
+              </div>
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

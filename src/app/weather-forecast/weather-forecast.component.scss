@@ -1,0 +1,130 @@
+.main-content {
+  padding: 0 100px 30px 100px;
+  .container {
+    width: 685px;
+    .title {
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(210, 108, 34, 0.5);
+      color: #d26c22;
+      h1 {
+        margin: 0;
+      }
+    }
+    .description {
+      padding: 20px;
+      color: #353432;
+      border: 1px solid darkgrey;
+      .name {
+        font-size: 35px;
+        margin-bottom: 15px;
+      }
+      .days {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        flex-direction: column;
+        .day {
+          display: flex;
+          padding: 10px 0 10px 0;
+          border-bottom: 1px solid darkgrey;
+          .day-caption {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100px;
+          }
+          .temp-container {
+            display: flex;
+            .hour-temp {
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              padding: 0 5px 0 5px;
+              .hour {
+                order: 1;
+              }
+              img {
+                order: 2;
+              }
+              .temp {
+                order: 3;
+              }
+              img {
+                height: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 720px) and (max-width: 1000px) {
+  .main-content {
+    padding: 0;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 719px) {
+  .main-content {
+    padding: 0;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    .container {
+      width: calc(100% - 40px);
+      .description {
+        padding: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .main-content {
+    .container {
+      width: calc(100% - 32px);
+      .description {
+        padding: 5px;
+        .days {
+          .day {
+            flex-direction: column;
+            .day-caption {
+              flex-direction: row;
+              justify-content: flex-start;
+              width: fit-content;
+            }
+            .temp-container {
+              justify-content: flex-start;
+              .hour-temp {
+                padding: 0 2px 0 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main-content {
+    .container {
+      width: calc(100% - 20px);
+      .days {
+        .day {
+          .temp-container {
+            font-size: 14px;
+          }
+          .hour-temp {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}

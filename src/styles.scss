@@ -1,0 +1,14 @@
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: rgb(243, 243, 218);
+  user-select: none;
+  overflow-x: hidden;
+}
