@@ -30,17 +30,17 @@ export class WeatherService {
 
   getCurrentWeatherByLocation(lat: string, lon: string) {
     return this.http
-    .get('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
+    .get('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
   }
 
   getCurrentWeather(id: number, unit: string) {
     return this.http
-      .get('http://api.openweathermap.org/data/2.5/weather?id=' + id + '&units=' + unit + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
+      .get('https://api.openweathermap.org/data/2.5/weather?id=' + id + '&units=' + unit + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
   }
 
   getWeatherForecast(id: number, unit: string) {
     return this.http
-      .get('http://api.openweathermap.org/data/2.5/forecast?id=' + id + '&units=' + unit + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
+      .get('https://api.openweathermap.org/data/2.5/forecast?id=' + id + '&units=' + unit + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
   }
 
   changeUnit(unit) {
