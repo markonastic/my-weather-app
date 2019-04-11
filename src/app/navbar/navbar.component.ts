@@ -26,21 +26,24 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.cities = citiesJson;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.location = position.coords;
-        this.weatherService
-          .getCurrentWeatherByLocation(this.location.latitude, this.location.longitude)
-            .subscribe((response: Config) => {
-              this.city.name = response.name;
-              this.city.id = response.id;
-              this.city.country = response.sys.country;
-              this.weatherService.changeCity(this.city);
-              this.searchText = this.city.name + ', ' + this.city.country;
-              this.placeholder = this.searchText;
-            });
-      });
-    } else {
+    let geolocation = false;
+    navigator.geolocation.getCurrentPosition(position => {
+      geolocation = true;
+      this.location = position.coords;
+      console.log(this.location);
+      this.weatherService
+        .getCurrentWeatherByLocation(this.location.latitude, this.location.longitude)
+          .subscribe((response: Config) => {
+            this.city.name = response.name;
+            this.city.id = response.id;
+            this.city.country = response.sys.country;
+            this.weatherService.changeCity(this.city);
+            this.searchText = this.city.name + ', ' + this.city.country;
+            this.placeholder = this.searchText;
+          });
+    });
+    if (!geolocation) {
+      console.log('aaa');
       this.weatherService.changeCity(this.cities[0]);
       this.searchText = this.cities[0].name + ', ' + this.cities[0].country;
       this.placeholder = this.searchText;
