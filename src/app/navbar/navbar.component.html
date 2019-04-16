@@ -21,11 +21,13 @@
         </div>
       </div>
       <div class="units-div">
-        <div *ngFor="let unit of units;let i=index" class="unit" [style.opacity]="unitShow ? '0' : '1'">
-          <input type="radio" (click)="unitChanged(i)" name="weatherUnit" checked="i===0">
-          <span>{{ unit.unitSign }}</span>
+        <div class="units-content" [style.transform]="unitShow ? 'scale(0)' : 'scale(1)'">
+          <div *ngFor="let unit of units;let i=index" class="unit">
+            <input type="radio" (click)="unitChanged(i)" name="weatherUnit" checked="i===0">
+            <span>{{ unit.unitSign }}</span>
+          </div>
+          <div class="checked-div" [style.opacity]="unitShow ? '0' : '1'" (window:resize)="onResize()" [style.transform]="unitIndex ? translate + '(' + unitIndex * 100 + '%)' : ''"></div>
         </div>
-        <div class="checked-div" [style.opacity]="unitShow ? '0' : '1'" (window:resize)="onResize()" [style.transform]="unitIndex ? translate + '(' + unitIndex * 100 + '%)' : ''"></div>
         <div class="wheel" (click)="showUnit()">
             <i class="fas fa-cog" [style.animation]="!unitShow ? 'wheel 0.3s' : 'wheel2 0.3s'"></i>
         </div>

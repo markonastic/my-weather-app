@@ -95,50 +95,52 @@
     border-radius: 5px;
     font-weight: bold;
     position: relative;
-    cursor: pointer;
-    .unit {
-      width: 40px;
-      height: 30px;
-      vertical-align: middle;
-      line-height: 30px;
-      text-align: center;
-      position: relative;
-      border: 1px solid #233450;
-      border-radius: 5px;
-      background-color: #212833;
-      transition: opacity 0.3s;
-      opacity: 0;
-      input {
-        opacity: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        left: 0;
-        z-index: 5;
-        &:hover {
+    .units-content {
+      display: flex;
+      transition: transform 0.3s;
+      transform: scale(0);
+      transform-origin: right;
+      .unit {
+        width: 40px;
+        height: 30px;
+        vertical-align: middle;
+        line-height: 30px;
+        text-align: center;
+        position: relative;
+        border: 1px solid #233450;
+        border-radius: 5px;
+        background-color: #212833;
+        input {
+          opacity: 0;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          left: 0;
+          z-index: 5;
           cursor: pointer;
         }
+        span {
+          z-index: 2;
+          position: relative;
+        }
       }
-      span {
-        z-index: 2;
-        position: relative;
+      .checked-div {
+        background-color: rgb(56, 163, 212);
+        width: 40px;
+        height: 30px;
+        position: absolute;
+        border-radius: 5px;
+        z-index: 1;
+        transition: opacity 0.3s, transform 0.3s;
       }
-    }
-    .checked-div {
-      background-color:rgb(56, 163, 212);
-      width: 40px;
-      height: 30px;
-      position: absolute;
-      border-radius: 5px;
-      z-index: 1;
-      transition: opacity 0.3s, transform 0.3s;
     }
     .wheel {
       color: white;
       line-height: 30px;
       font-size: 20px;
       width: 42px;
+      cursor: pointer;
       i {
         position: relative;
         left: 5px;
@@ -228,11 +230,10 @@
         display: flex;
         flex-direction: column;
         right: 0;
-        .unit {
+        .units-content {
+          flex-direction: column;
           order: 2;
-        }
-        .checked-div {
-          top: 100%;
+          transform-origin: top;
         }
         .wheel {
           display: unset;
@@ -277,12 +278,15 @@
         }
       }
       .units-div {
-        .unit {
-          width: 35px;
+        .units-content {
+          .unit {
+            width: 35px;
+          }
           .checked-div {
             width: 35px;
           }
         }
+
         .wheel {
           width: 35px;
           i {
