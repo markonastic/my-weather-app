@@ -25,7 +25,7 @@
           <input type="radio" (click)="unitChanged(i)" name="weatherUnit" checked="i===0">
           <span>{{ unit.unitSign }}</span>
         </div>
-        <div class="checked-div" [style.opacity]="unitShow ? '0' : '1'" [style.transform]="unitIndex ? 'translateX(' + unitIndex * 100 + '%)' : ''"></div>
+        <div class="checked-div" [style.opacity]="unitShow ? '0' : '1'" (window:resize)="onResize()" [style.transform]="unitIndex ? translate + '(' + unitIndex * 100 + '%)' : ''"></div>
         <div class="wheel" (click)="showUnit()">
             <i class="fas fa-cog" [style.animation]="!unitShow ? 'wheel 0.3s' : 'wheel2 0.3s'"></i>
         </div>

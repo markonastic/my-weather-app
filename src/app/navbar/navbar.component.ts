@@ -21,10 +21,12 @@ export class NavbarComponent implements OnInit {
   width: number;
   location = null;
   city = {name: '', id: 0, country: ''};
+  translate = 'translateX';
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
+    this.onResize();
     this.cities = citiesJson;
     let geolocation = false;
     navigator.geolocation.getCurrentPosition(position => {
@@ -107,5 +109,13 @@ export class NavbarComponent implements OnInit {
 
   showUnit() {
     this.unitShow = !this.unitShow;
+  }
+
+  onResize() {
+    if (window.innerWidth <= 550) {
+      this.translate = 'translateY';
+    } else {
+      this.translate = 'translateX';
+    }
   }
 }
