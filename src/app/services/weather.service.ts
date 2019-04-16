@@ -20,10 +20,6 @@ export class WeatherService {
       .get('assets/json/units.json');
   }
 
-  // getCities() {
-  //   return this.http.get('assets/json/citylist.min.json');
-  // }
-
   getIcon(id) {
     return this.http.get('https://openweathermap.org/img/w/' + id + '.png');
   }
