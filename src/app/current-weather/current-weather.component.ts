@@ -1,5 +1,8 @@
-import { WeatherService } from '../services/weather.service';
 import { Component, OnInit } from '@angular/core';
+import { CurrentWeather } from './current-weather';
+import { CurrentWeatherModel } from '../models/current-weather.model';
+import { WeatherModel } from './../models/weather.model';
+import { IUnit } from '../navbar/unit';
 
 @Component({
   selector: 'app-current-weather',
@@ -8,28 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentWeatherComponent implements OnInit {
 
-  weather = null;
-  unit = null;
-  city = null;
-  show: boolean;
-  date = new Date();
+  public currentWeather: CurrentWeather = null;
+  public unit: IUnit = null;
+  public show: boolean = null;
+  public date: number = null;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private currentWeatherModel: CurrentWeatherModel, private weatherModel: WeatherModel) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    const { unitEvent } = this.weatherModel;
 
-    this.weatherService.unit.subscribe(response => {
-      this.unit = response;
-      this.show = false;
-      this.weatherService.city.subscribe(response1 => {
-        this.city = response1;
-        if (this.city && this.unit) {
-          this.weatherService.getCurrentWeather(this.city.id, this.unit.unit).subscribe(response2 => {
-            this.weather = response2;
-            this.show = true;
-          });
-        }
-      });
+    unitEvent.subscribe((unit: IUnit) => this.unit = unit);
+
+    const { currentWeatherEvent } = this.currentWeatherModel;
+
+    currentWeatherEvent.subscribe((weather: CurrentWeather) => {
+      this.currentWeather = weather;
     });
   }
 }

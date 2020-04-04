@@ -1,5 +1,8 @@
-import { WeatherService } from '../services/weather.service';
+import { WeatherModel } from './../models/weather.model';
 import { Component, OnInit } from '@angular/core';
+import { WeatherForecast } from './weather-forecast';
+import { IUnit } from '../navbar/unit';
+import { WeatherForecastModel } from '../models/weather-forecast.model';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -8,32 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherForecastComponent implements OnInit {
 
-  forDays = null;
-  unit = null;
-  city = null;
-  daysArray = [];
-  location = {};
+  public weatherForecast: WeatherForecast = null;
+  public unit: IUnit = null;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherForecastModel: WeatherForecastModel, private weatherModel: WeatherModel) {}
 
-  ngOnInit() {
-    this.weatherService.unit.subscribe(response => {
-      this.unit = response;
-      this.weatherService.city.subscribe(response1 => {
-        this.city = response1;
-        if (this.city) {
-          this.weatherService
-            .getWeatherForecast(this.city.id, this.unit.unit)
-              .subscribe(response2 => {
-                this.forDays = response2;
-                for (const listEl of this.forDays.list) {
-                  if (this.daysArray.indexOf(listEl.dt_txt.substr(0, 10)) < 0) {
-                    this.daysArray.push(listEl.dt_txt.substr(0, 10));
-                  }
-                }
-              });
-        }
-      });
+  ngOnInit(): void {
+    const { unitEvent } = this.weatherModel;
+
+    unitEvent.subscribe((unit: IUnit) => this.unit = unit);
+
+    const { weatherForecastEvent } = this.weatherForecastModel;
+
+    weatherForecastEvent.subscribe((weatherForecast: WeatherForecast) => {
+      this.weatherForecast = weatherForecast;
     });
   }
 }

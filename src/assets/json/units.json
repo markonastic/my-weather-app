@@ -1,16 +1,16 @@
 [
   {
-    "unit": "metric",
+    "name": "celsius",
     "unitSign": "°C",
     "wind": "m/s"
   },
   {
-    "unit": "imperial",
+    "name": "fahrenheit",
     "unitSign": "°F",
     "wind": "mph"
   },
   {
-    "unit": "",
+    "name": "kelvin",
     "unitSign": "K",
     "wind": "m/s"
   }

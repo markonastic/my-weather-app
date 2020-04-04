@@ -1,49 +1,49 @@
+import { ICurrentWeather } from './../current-weather/current-weather';
+import { IUnit } from './../navbar/unit';
+import { ICity } from './../navbar/city';
+import { IWeatherForecast } from './../weather-forecast/weather-forecast';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
-  private any: any;
-  private unitSource = new BehaviorSubject(this.any);
-  unit = this.unitSource.asObservable();
-  private citySource = new BehaviorSubject(this.any);
-  city = this.citySource.asObservable();
+  private _url = 'https://api.openweathermap.org/data/2.5/';
+  private unitAppID = '&units=metric&appID=b71d357185e75eae5f2e52d7fba9a58a';
 
   constructor(private http: HttpClient) { }
 
-  getUnits() {
-    return this.http
-      .get('assets/json/units.json');
+  public getCities(): Observable<ICity[]> {
+    return this.http.get('assets/json/citylist.min.json')
+                    .pipe(map((cities: ICity[]) => cities));
   }
 
-  getIcon(id) {
-    return this.http.get('https://openweathermap.org/img/w/' + id + '.png');
+  public getUnits(): Observable<IUnit[]> {
+    return this.http.get('assets/json/units.json')
+                    .pipe(map((unit: IUnit[]) => unit));
   }
 
-  getCurrentWeatherByLocation(lat: string, lon: string) {
-    return this.http
-    .get('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
+  public getCurrentWeatherByLocation(lat: number, lon: number): Observable<ICurrentWeather> {
+    return this.http.get(this._url + 'weather?lat=' + lat + '&lon=' + lon + this.unitAppID)
+                    .pipe(map((currentWeather: ICurrentWeather) => currentWeather));
   }
 
-  getCurrentWeather(id: number, unit: string) {
-    return this.http
-      .get('https://api.openweathermap.org/data/2.5/weather?id=' + id + '&units=' + unit + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
+  public getWeatherForecastByLocation(lat: number, lon: number): Observable<IWeatherForecast> {
+    return this.http.get(this._url + 'forecast?lat=' + lat + '&lon=' + lon + this.unitAppID)
+                    .pipe(map((weatherForecast: IWeatherForecast) => weatherForecast));
   }
 
-  getWeatherForecast(id: number, unit: string) {
-    return this.http
-      .get('https://api.openweathermap.org/data/2.5/forecast?id=' + id + '&units=' + unit + '&APPID=b71d357185e75eae5f2e52d7fba9a58a');
+  public getCurrentWeather(cityId: number): Observable<ICurrentWeather> {
+    return this.http.get(this._url + 'weather?id=' + cityId + this.unitAppID)
+                    .pipe(map((currentWeather: ICurrentWeather) => currentWeather));
   }
 
-  changeUnit(unit) {
-    this.unitSource.next(unit);
-  }
-
-  changeCity(city) {
-    this.citySource.next(city);
+  public getWeatherForecast(cityId: number): Observable<IWeatherForecast> {
+    return this.http.get(this._url + 'forecast?id=' + cityId + this.unitAppID)
+                    .pipe(map((weatherForecast: IWeatherForecast) => weatherForecast));
   }
 }

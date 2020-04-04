@@ -10,7 +10,8 @@
         <div class="dropdown" [class.hide]="hide">
           <div class="dropdown-container">
             <div class="dropdown-box">
-              <div class="dropdown-item" *ngFor="let city of searchCities;let i=index" (click)="cityChanged(i)">{{ city.name }}, {{ city.country }}</div>
+              <div class="dropdown-item" *ngFor="let city of searchCities;let i=index" (click)="cityChanged(i)">
+                {{ city.name }}, {{ city.country }}</div>
             </div>
           </div>
           <div class="arrow" [class.hide]="!showArrow">
@@ -26,7 +27,11 @@
             <input type="radio" (click)="unitChanged(i)" name="weatherUnit" checked="i===0">
             <span>{{ unit.unitSign }}</span>
           </div>
-          <div class="checked-div" [style.opacity]="unitShow ? '0' : '1'" (window:resize)="onResize()" [style.transform]="unitIndex ? translate + '(' + unitIndex * 100 + '%)' : ''"></div>
+          <div class="checked-div"
+               [style.opacity]="unitShow ? '0' : '1'"
+               (window:resize)="onResize()"
+               [style.transform]="unitIndex ? translate + '(' + unitIndex * 100 + '%)' : ''"
+          ></div>
         </div>
         <div class="wheel" (click)="showUnit()">
             <i class="fas fa-cog" [style.animation]="!unitShow ? 'wheel 0.3s' : 'wheel2 0.3s'"></i>

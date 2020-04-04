@@ -1,3 +1,4 @@
+import { WeatherModel } from './models/weather.model';
 import { WeatherService } from './services/weather.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,10 +22,11 @@ import { CurrentWeatherComponent } from './current-weather/current-weather.compo
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
-    WeatherService
+    WeatherService,
+    WeatherModel
   ],
   bootstrap: [AppComponent]
 })
