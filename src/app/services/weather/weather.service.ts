@@ -1,7 +1,5 @@
-import { ICurrentWeather } from './../current-weather/current-weather';
-import { IUnit } from './../navbar/unit';
-import { ICity } from './../navbar/city';
-import { IWeatherForecast } from './../weather-forecast/weather-forecast';
+import { ICurrentWeather } from '../../data/current-weather';
+import { IWeatherForecast } from '../../data/weather-forecast';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,16 +14,6 @@ export class WeatherService {
   private unitAppID = '&units=metric&appID=b71d357185e75eae5f2e52d7fba9a58a';
 
   constructor(private http: HttpClient) { }
-
-  public getCities(): Observable<ICity[]> {
-    return this.http.get('assets/json/citylist.min.json')
-                    .pipe(map((cities: ICity[]) => cities));
-  }
-
-  public getUnits(): Observable<IUnit[]> {
-    return this.http.get('assets/json/units.json')
-                    .pipe(map((unit: IUnit[]) => unit));
-  }
 
   public getCurrentWeatherByLocation(lat: number, lon: number): Observable<ICurrentWeather> {
     return this.http.get(this._url + 'weather?lat=' + lat + '&lon=' + lon + this.unitAppID)

@@ -1,4 +1,4 @@
-import { City } from './../navbar/city';
+import { City } from './city';
 
 export class CurrentWeather {
   public description: string;

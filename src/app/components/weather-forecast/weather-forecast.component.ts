@@ -1,8 +1,8 @@
-import { WeatherModel } from './../models/weather.model';
 import { Component, OnInit } from '@angular/core';
-import { WeatherForecast } from './weather-forecast';
-import { IUnit } from '../navbar/unit';
-import { WeatherForecastModel } from '../models/weather-forecast.model';
+import { WeatherForecast } from '../../data/weather-forecast';
+import { WeatherForecastModel } from '../../models/weather-forecast.model';
+import { UnitModel } from '../../models/unit.model';
+import { IUnit } from '../../data/unit';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -14,12 +14,14 @@ export class WeatherForecastComponent implements OnInit {
   public weatherForecast: WeatherForecast = null;
   public unit: IUnit = null;
 
-  constructor(private weatherForecastModel: WeatherForecastModel, private weatherModel: WeatherModel) {}
+  constructor(private weatherForecastModel: WeatherForecastModel,
+              private unitModel: UnitModel
+             ) {}
 
   ngOnInit(): void {
-    const { unitEvent } = this.weatherModel;
+    const { currentUnitEvent } = this.unitModel;
 
-    unitEvent.subscribe((unit: IUnit) => this.unit = unit);
+    currentUnitEvent.subscribe((unit: IUnit) => this.unit = unit);
 
     const { weatherForecastEvent } = this.weatherForecastModel;
 

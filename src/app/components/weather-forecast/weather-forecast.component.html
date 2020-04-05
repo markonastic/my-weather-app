@@ -21,7 +21,7 @@
                 <span>
                   <span class="temp" *ngIf="unit.name === 'celsius'">{{ hour.main.tempC | number: '1.0-0' }}</span>
                   <span class="temp" *ngIf="unit.name === 'fahrenheit'">{{ hour.main.tempF | number: '1.0-0' }}</span>
-                  <span class="temp" *ngIf="unit.name === 'kelvin'">{{ hour.main.tempC | number: '1.0-0' }}</span>
+                  <span class="temp" *ngIf="unit.name === 'kelvin'">{{ hour.main.tempK | number: '1.0-0' }}</span>
                   <span>{{ unit.unitSign }}</span>
                 </span>
                 <!-- <span class="temp" *ngIf="unit.name === 'celsius'">{{ hour.main.tempC | number: '1.0-0' }}{{ unit.unitSign }}</span>

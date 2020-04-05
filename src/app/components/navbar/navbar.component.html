@@ -2,19 +2,24 @@
     <header>
       <div class="choose-form">
         <div class="search">
-          <input type="text" [(ngModel)]="searchText" (click)="inputClick()" (keyup)="search()" [placeholder]="placeholder">
+          <input type="text"
+                 [value]="searchText"
+                 (click)="searchText = ''"
+                 (keyup)="cityModel.searchCityEvent.emit($event.srcElement.value)"
+                 [placeholder]="placeholder"
+          >
           <div class="icon">
             <i class="fas fa-search"></i>
           </div>
         </div>
-        <div class="dropdown" [class.hide]="hide">
+        <div class="dropdown" *ngIf="searchCities">
           <div class="dropdown-container">
             <div class="dropdown-box">
-              <div class="dropdown-item" *ngFor="let city of searchCities;let i=index" (click)="cityChanged(i)">
+                <div class="dropdown-item" *ngFor="let city of searchCities" (click)="cityChanged(city)">
                 {{ city.name }}, {{ city.country }}</div>
             </div>
           </div>
-          <div class="arrow" [class.hide]="!showArrow">
+          <div class="arrow" *ngIf="searchCities.length > 4">
             <div>
                 <i class="fas fa-sort-down"></i>
             </div>
@@ -28,12 +33,11 @@
             <span>{{ unit.unitSign }}</span>
           </div>
           <div class="checked-div"
-               [style.opacity]="unitShow ? '0' : '1'"
                (window:resize)="onResize()"
                [style.transform]="unitIndex ? translate + '(' + unitIndex * 100 + '%)' : ''"
           ></div>
         </div>
-        <div class="wheel" (click)="showUnit()">
+        <div class="wheel" (click)="this.unitShow = !this.unitShow;">
             <i class="fas fa-cog" [style.animation]="!unitShow ? 'wheel 0.3s' : 'wheel2 0.3s'"></i>
         </div>
       </div>

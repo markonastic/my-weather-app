@@ -1,4 +1,4 @@
-import { ICity, City } from './../navbar/city';
+import { ICity, City } from './city';
 
 export class ListMain {
   public tempC: number;
